@@ -21,10 +21,8 @@ import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 @SpringBootTest(webEnvironment = NONE)
 class SpringBootWireMockExampleApplicationTests {
 
-  @Autowired
-  RestClient restClient;
-  @Autowired
-  ObjectMapper objectMapper;
+  @Autowired RestClient restClient;
+  @Autowired ObjectMapper objectMapper;
 
   @Test
   void test() throws Exception {
