@@ -26,10 +26,10 @@ class SpringBootWireMockExampleApplicationTests {
 
   @Test
   void test() throws Exception {
-
+    // given:
     TestingResponse expected = TestingResponse.of("trololo");
     String body = objectMapper.writeValueAsString(expected);
-
+    // when:
     WireMock.stubFor(post(urlEqualTo("/api/v1/up/"))
                          .withRequestBody(matchingJsonPath("$.input"))
                          .willReturn(aResponse()
@@ -37,8 +37,9 @@ class SpringBootWireMockExampleApplicationTests {
                                          .withBody(body)
                                          .withStatus(OK.value())))
     ;
-
-    TestingResponse response = restClient.post(TestingRequest.of("ololo"));
+    // then:
+    TestingRequest request = TestingRequest.of("ololo");
+    TestingResponse response = restClient.post(request);
     assertThat(response).isEqualTo(expected);
   }
 }
